@@ -1,0 +1,84 @@
+body{
+  background-color: burlywood;
+}
+
+.section-divider{ 
+    margin: 3rem 0;
+}
+
+.footer-section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #a81212;
+}
+
+@media (min-width: 1200px) {
+  .feature-heading {
+    margin-top: 10rem;
+  }
+}
+
+@media (max-width: 500px) {
+    .carouselImg {
+        display: none;
+    }
+    
+    .team {
+        margin-top: 2rem;
+    }
+}
+
+table td{
+    border: 1px solid brown;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#bigButton{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#navbar-cent{
+  text-align: right;
+}
+
+h1{
+  font-family: cursive;
+  color: brown;
+  text-align: center;
+}
+
+p{
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.smallbutton{
+  color: #a81212;
+  background-color: yellowgreen;
+}
+
+#editForm{
+  background-color: goldenrod;
+  width: 20%;
+  color: purple;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

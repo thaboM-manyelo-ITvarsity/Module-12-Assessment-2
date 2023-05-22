@@ -1,0 +1,94 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Brown Bed Contactbook</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+
+    <body onload="fetchContacts()">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a href="#" class="navbar-brand">Brown paper Contactbook</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <div class="navbar-nav">
+                        <a href="#" class="nav-item nav-link">Home</a>
+                        <a href="#" class="nav-item nav-link">About</a>
+                        <a href="#" class="nav-item nav-link">Contact</a>
+                        <button type="button" class="btn btn-primary position-relative">
+                            Profile
+                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                              <span class="visually-hidden">New alerts</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <h1>Welcome.</h1>
+        <p>Feel free to add a new contact, edit existing contact and check out the new alerts. Thank you!</p>
+        <hr class="section-divider"/> 
+
+        <div id="bigButton">
+            <div id="table">Contacts loading...</div>
+            <button id="refresh" type="button" class="smallbutton">Refresh</button>
+            <button id="addContact" type="button" class="smallbutton">Add Contact</button>
+        </div>
+        
+        <script src="config.js"></script>
+        <script>
+            document.getElementById("refresh").addEventListener('click', fetchContacts);
+            document.getElementById("addContact").addEventListener('click', addContact);
+
+            function fetchContacts(){
+                fetch(rootPath + "controller/get-contacts/")
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    displayOutput(data);
+                    //console.log(data);
+                })
+            }
+
+            function displayOutput(data){
+                output = "<table>";
+
+                for(a in data){
+                    output += `
+                        <tr onclick="editContact(${data[a].id})">
+                            <td><img src="${rootPath}controller/uploads/${data[a].avatar}" width="50"/></td>
+                            <td><h5>${data[a].firstname}</h5></td>
+                            <td><h5>${data[a].lastname}</h5></td>
+                        </tr>
+                    `
+                }
+                output += "</table>";
+                document.getElementById("table").innerHTML = output;
+            }
+
+            function addContact(){
+                window.open("add-contact.html", "_self");
+            }
+
+            function editContact(id){
+                window.open("edit-contact.html?id=" + id, "_self");
+            }
+        </script>
+
+        <hr class="section-divider"/>
+
+        <footer class="container footer-section">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2023 Company,Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </footer>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
